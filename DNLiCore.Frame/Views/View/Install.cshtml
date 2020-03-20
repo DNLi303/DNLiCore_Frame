@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>系统初始化</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/static/css/style.css">
+    <link rel="stylesheet" href="~/static/css/responsive.css">
+
+
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="error-pagewrap" id="app">
+        <div class="error-page-int">
+            <div class="text-center m-b-md custom-login">
+                <h3>系统初始化</h3>              
+            </div>
+            <div class="content-error">
+                <div class="hpanel">
+                    <div class="panel-body">
+                        <div id="loginForm">
+                            <div class="form-group">
+                                <label class="control-label" for="username">数据库类型</label>
+                                <input type="text" value="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="username">数据库地址</label>
+                                <input type="text" placeholder="例如：127.0.0.1" value="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="username">数据库端口</label>
+                                <input type="text" placeholder="例如：3306" value="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="username">数据库用户名</label>
+                                <input type="text" placeholder="例如：sa" value="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="username">数据库用密码</label>
+                                <input type="text" placeholder="" value="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="username">后台管理账号</label>
+                                <input type="text" placeholder="" value="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="username">后台管理密码</label>
+                                <input type="text" placeholder="" value="" class="form-control">
+                            </div>
+
+                            <button class="btn btn-success btn-block loginbtn" @@click="login">安装</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center login-footer">
+                <p>Copyright © 2018 <a href="javascript:;">soft_theme</a> All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+    <script src="~/static/js/vue.js"></script>
+    <script src="~/static/js/jquery-1.12.4.min.js"></script>
+    <script src="~/static/js/axioshelp.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                login() {
+                    window.location.href = '/Home/Index';
+                },
+                register() {
+                    window.location.href = '/View/Register';
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
