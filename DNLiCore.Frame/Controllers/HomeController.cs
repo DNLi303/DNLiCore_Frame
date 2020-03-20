@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 using DNLiCore.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DNLiCore_Frame.Controllers
 {
@@ -20,9 +21,9 @@ namespace DNLiCore_Frame.Controllers
 
             return View();
         }
-
        
 
-      
+
+
     }
 }

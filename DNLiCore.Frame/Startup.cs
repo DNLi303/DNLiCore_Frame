@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using DNLiCore.Frame;
 using DNLiCore.Model;
 using DNLiCore.Service;
 using FreeSql;
@@ -12,8 +13,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
-namespace DNLiCore_Frame
+namespace DNLiCore.Frame
 {
     public class Startup
     {
@@ -75,30 +79,35 @@ namespace DNLiCore_Frame
                 services.AddScoped(item);
             }
 
+            //缓存管理
+            services.AddMemoryCache();
 
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(option =>
+            services.AddMvc(option => { option.Filters.Add(typeof(AuthorFilter)); }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(option =>
             {
                 option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+               // app.UseExceptionHandler("/Home/Error");
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/View/Error");
             }
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            //使用NLog作为日志记录工具
+            loggerFactory.AddNLog();
+            //引入Nlog配置文件
+            env.ConfigureNLog("nlog.config");
             app.UseMvc(routes =>
             {
                 string InstallFlag = Configuration["InstallFlag"].ToString();

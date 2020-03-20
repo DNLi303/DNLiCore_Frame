@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DNLiCore.Model;
 using DNLiCore.Service;
 using DNLiCore.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DNLiCore.Frame.Controllers
@@ -22,6 +23,8 @@ namespace DNLiCore.Frame.Controllers
         /// 登录
         /// </summary>
         /// <returns></returns>
+        /// 
+        [AllowAnonymous]
         public JsonResult Login()
         {
             return null;
@@ -33,6 +36,8 @@ namespace DNLiCore.Frame.Controllers
         /// 注册
         /// </summary>
         /// <returns></returns>
+        /// 
+        [AllowAnonymous]
         public JsonResult Register([FromBody] t_user clientModel)
         {
             //参数过滤
